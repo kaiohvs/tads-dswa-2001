@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Exemplo 3- Spring MVC</title>
+</head>
+<body>
+	<h1> Exemplo 3- Spring MVC</h1>
+	<p> nome: <span th:text ="${nome}"></span> </p>	
+	<p> numero: <span th:text ="${numero}">123</span> </p>	
+	
+	<div th:if="${dtnasc != null}">
+		<p> data de nascimento: <span th:text ="${dtnasc}"></span> </p>
+		<p> idade = <span th:text ="${idade}"></span> </p>
+	</div>
+	<div th:unless="${dtnasc != null}">
+		<p>Data de nascimento não informado </p>
+	</div>
+	
+</body>
+</html>
