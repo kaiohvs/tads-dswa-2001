@@ -7,8 +7,8 @@
 <body>
 	<div>
 		<h1>Dados Preenchidos</h1>
-		<div>
-			<p>ID: <span th:text="${dados.id}"></span></p>
+		<div th:if="${dados != null}">
+			<p>Id: <span th:text="${dados.id}"></span></p>
 			<p>Nome: <span th:text="${dados.nome}"></span></p>
 			<p>Descrição: <span th:text="${dados.descricao}"></span></p>
 			<p>Email: <span th:text="${dados.email}"></span></p>
@@ -25,6 +25,9 @@
 				</ul>
 			</p>	
 		</div>
+	</div>
+	<div th:unless="${dados != null}">
+		<p> Dados nao existente </p>
 	</div>
 
 </body>

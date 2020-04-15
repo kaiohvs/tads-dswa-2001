@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class FormularioController {
@@ -30,4 +31,15 @@ public class FormularioController {
 		return new ModelAndView("resultado").addObject("dados", dadosRecebidos);
 	}
 	
+	@PostMapping("/salvar-prg")
+	public ModelAndView salvarPrg(@ModelAttribute DadosPessoais dadosRecebidos, RedirectAttributes redirAttr) {
+		service.save(dadosRecebidos);
+		redirAttr.addFlashAttribute("dados", dadosRecebidos);
+		return new ModelAndView("redirect:/resultado-prg");
+	}
+	
+	@GetMapping("/resultado-prg")
+	public ModelAndView resultadoPrg() {
+		return new ModelAndView("resultado");
+	}
 }
