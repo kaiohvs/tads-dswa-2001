@@ -4,23 +4,48 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class DadosPessoais {
 
 	private Integer id;
+	
+	@NotBlank
 	private String nome;
 	private String descricao;
+	
+	@Email
+	@NotBlank
 	private String email;
 	private String senha;
 	private String repetirSenha;
+	
+	@Min(value =1)
+	@Max(99)
 	private int numeroSorte;
+	
+	@Digits(integer = 1, fraction = 2, message = "altura com mais de 2 casas decimais")
 	private BigDecimal altura;
+	
+	@Digits(integer = 3, fraction = 1, message = "peso com mais de 1 casas decimal")
 	private BigDecimal peso;
 	
+	@Past
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 	private LocalDate dtNascimento;
 	private int sexo;
+	
+	@NotNull	
 	private List<String> interesses;
 
 	public Integer getId() {
